@@ -1,2 +1,3 @@
-pierwsza linijka
-druga linijka
+pierwsza linijka/zmiana2
+druga linijka11
+nowafunkcja

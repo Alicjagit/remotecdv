@@ -1,0 +1,55 @@
+Zadanie 2.
+
+select
+c.contactFirstName,
+c.contactLastName,
+count(o.orderNumber) as zamówienia
+from customers c inner join orders o on c.customerNumber=o.customerNumber
+group by c.contactFirstName, c.contactLastName
+order by zamówienia desc
+
+
+
+Zadanie 4.
+
+a)
+
+select
+p.productName,
+sum(quantityOrdered) as sztuki,
+substr(orderDate,1,4) as rok
+from products p inner join orderdetails od on p.productCode=od.productCode
+inner join orders o on od.orderNumber=o.orderNumber
+group by p.productName, rok
+having productName like '1952 Alpine%' or 
+productName like '1968 Ford Mustang%' or 
+productName like '1996 Moto Guzzi%'
+order by productName, rok
+
+b)
+
+select
+p.productName,
+substr(orderDate,1,4) as rok,
+substr(orderDate,6,2) as miesiąc,
+sum(quantityOrdered*priceEach) as suma
+from products p inner join orderdetails od on p.productCode=od.productCode
+inner join orders o on od.orderNumber=o.orderNumber
+group by p.productName, rok, miesiąc
+having productName like '%Harley%'
+order by productName, rok, miesiąc
+
+
+c)
+
+select
+p.productLine,
+count(productName) as sztuki
+from products p inner join productlines pl on p.productLine=pl.productLine
+group by productLine
+having sztuki between 10 and 20
+
+
+Link GIT
+https://github.com/Alicjagit/remotecdv
+
